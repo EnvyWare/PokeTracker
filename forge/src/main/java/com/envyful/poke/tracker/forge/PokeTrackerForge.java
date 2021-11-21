@@ -67,7 +67,6 @@ public class PokeTrackerForge {
         this.commandFactory.registerCommand(event.getServer(), new PokeTrackerCommand());
     }
 
-
     @Mod.EventHandler
     public void onServerStop(FMLServerStoppingEvent event) {
         PokeTrackerFactory.save();

@@ -22,6 +22,10 @@ public class EntityData {
         return new EntityData(pixelmon.getPokemonName(), pixelmon.getUniqueID(), time, caught);
     }
 
+    public static EntityData of(UUID uuid, String name, long time, boolean caught) {
+        return new EntityData(name, uuid, time, caught);
+    }
+
     private EntityData(String pokemonName, UUID entityUUID, long spawnTime, boolean caught) {
         this.pokemonName = pokemonName;
         this.entityUUID = entityUUID;

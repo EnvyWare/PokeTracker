@@ -1,27 +1,39 @@
 package com.envyful.poke.tracker.forge.tracker;
 
-import com.envyful.api.json.UtilGson;
 import com.envyful.poke.tracker.forge.PokeTrackerForge;
 import com.envyful.poke.tracker.forge.config.PokeTrackerConfig;
 import com.envyful.poke.tracker.forge.tracker.data.EntityData;
+import com.envyful.poke.tracker.forge.tracker.data.EntityDataTypeAdapter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.internal.LinkedTreeMap;
+import com.google.gson.reflect.TypeToken;
 import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class PokeTrackerFactory {
 
     private static final Map<String, List<EntityData>> TRACKED_ENTITIES = Maps.newHashMap();
     private static final Path POKE_TRACKER_FILE = Paths.get("config/PokeTracker/tracker.json");
+    private static final Gson GSON = new GsonBuilder()
+            .setPrettyPrinting()
+            .enableComplexMapKeySerialization()
+            .registerTypeAdapter(EntityData.class, new EntityDataTypeAdapter())
+            .create();
+    private static final Type TYPE = TypeToken.get(TRACKED_ENTITIES.getClass()).getType();
 
     public static List<EntityData> getTrackedEntities(String name) {
-        return TRACKED_ENTITIES.get(name.toLowerCase());
+        return TRACKED_ENTITIES.getOrDefault(name.toLowerCase(), Collections.emptyList());
     }
 
     public static void addTrackedEntities(EntityPixelmon pixelmon) {
@@ -30,7 +42,7 @@ public class PokeTrackerFactory {
                 continue;
             }
 
-            List<EntityData> entities = TRACKED_ENTITIES.computeIfAbsent(entry.getKey().toLowerCase(), ___ -> Lists.newArrayList());
+            List<EntityData> entities = TRACKED_ENTITIES.computeIfAbsent(entry.getValue().getName().toLowerCase(), ___ -> Lists.newArrayList());
 
             entities.add(0, EntityData.of(pixelmon));
 
@@ -61,7 +73,25 @@ public class PokeTrackerFactory {
             }
 
             BufferedReader bufferedReader = new BufferedReader(new FileReader(POKE_TRACKER_FILE.toFile()));
-            TRACKED_ENTITIES.putAll(UtilGson.GSON.fromJson(bufferedReader, HashMap.class));
+            Map<String, List<LinkedTreeMap<String, Object>>> trackedEntities = GSON.fromJson(bufferedReader, Map.class);
+
+            if (trackedEntities == null) {
+                return;
+            }
+
+            for (Map.Entry<String, List<LinkedTreeMap<String, Object>>> entry : trackedEntities.entrySet()) {
+                for (LinkedTreeMap<String, Object> treeEntry : entry.getValue()) {
+                    TRACKED_ENTITIES.computeIfAbsent(entry.getKey(), ___ -> Lists.newArrayList()).add(
+                            EntityData.of(
+                                    UUID.fromString((String) treeEntry.get("entityUUID")),
+                                    (String) treeEntry.get("pokemonName"),
+                                    (long) ((double) treeEntry.get("spawnTime")),
+                                    (boolean) treeEntry.get("caught")
+                            )
+                    );
+                }
+            }
+
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -75,7 +105,7 @@ public class PokeTrackerFactory {
             }
 
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(POKE_TRACKER_FILE.toFile()));
-            UtilGson.GSON.toJson(TRACKED_ENTITIES, bufferedWriter);
+            GSON.toJson(TRACKED_ENTITIES, bufferedWriter);
             bufferedWriter.close();
         } catch (IOException e) {
             e.printStackTrace();

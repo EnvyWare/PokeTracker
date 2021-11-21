@@ -17,8 +17,8 @@ import java.util.Map;
 public class PokeTrackerConfig extends AbstractYamlConfig {
 
     private Map<String, TrackerSection> trackers = ImmutableMap.of(
-            "legends", new TrackerSection(
-                    "legendaries", "isLegend:1", Lists.newArrayList("hoopa"),
+            "legendaries", new TrackerSection(
+                    "legends", "isLegend:1", Lists.newArrayList("hoopa"),
                     new PositionableConfigItem("pixelmon:ui_element", 1, (byte) 0, "&bLast Legendaries",
                                                Lists.newArrayList(
                                                        "&8• &6%poketracker_pokemon_legends_1%&8 - &f%poketracker_time_legends_1% &8[&f%poketracker_status_legends_1%&8]",
@@ -26,7 +26,7 @@ public class PokeTrackerConfig extends AbstractYamlConfig {
                                                        "&8• &6%poketracker_pokemon_legends_3%&8 - &f%poketracker_time_legends_3% &8[&f%poketracker_status_legends_3%&8]"
                                                ), 1, 1,
                                                ImmutableMap.of(
-                                                       "UIImage", new ConfigItem.NBTValue("string", "texture:pixelmon/textures/gui/uielements/flatcat.png")
+                                                       "UIImage", new ConfigItem.NBTValue("string", "pixelmon:textures/gui/uielements/flatcat.png")
                                                )
                     )
             ),
@@ -39,7 +39,7 @@ public class PokeTrackerConfig extends AbstractYamlConfig {
                                                        "&8• &6%poketracker_pokemon_ultrabeast_3%&8 - &f%poketracker_time_ultrabeast_3% &8[&f%poketracker_status_ultrabeast_3%&8]"
                                                ), 3, 1,
                                                ImmutableMap.of(
-                                                       "UIImage", new ConfigItem.NBTValue("string", "texture:pixelmon/textures/gui/uielements/flatcat.png")
+                                                       "UIImage", new ConfigItem.NBTValue("string", "pixelmon:textures/gui/uielements/flatcat.png")
                                                )
                     )
             )
