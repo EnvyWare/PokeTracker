@@ -9,6 +9,7 @@ import com.envyful.legend.tracker.forge.command.LegendTrackerCommand;
 import com.envyful.legend.tracker.forge.config.LegendTrackerConfig;
 import com.envyful.legend.tracker.forge.config.LegendTrackerGui;
 import com.envyful.legend.tracker.forge.config.LegendTrackerLocale;
+import com.envyful.legend.tracker.forge.tracker.listener.PokemonSpawnListener;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
@@ -55,6 +56,8 @@ public class LegendTrackerForge {
 
     @Mod.EventHandler
     public void onServerStart(FMLServerStartingEvent event) {
+        new PokemonSpawnListener();
+
         this.commandFactory.registerCommand(event.getServer(), new LegendTrackerCommand());
     }
 

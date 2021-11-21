@@ -58,6 +58,7 @@ public class LegendTrackerConfig extends AbstractYamlConfig {
 
         private String name;
         private String spec;
+        private int maxStored = 3;
         private transient PokemonSpec trackerSpec = null;
         private List<String> blacklist;
         private transient List<PokemonSpec> blacklistSpec = null;
@@ -72,6 +73,10 @@ public class LegendTrackerConfig extends AbstractYamlConfig {
 
         public String getName() {
             return this.name;
+        }
+
+        public int getMaxStored() {
+            return this.maxStored;
         }
 
         public PositionableConfigItem getDisplayItem() {
