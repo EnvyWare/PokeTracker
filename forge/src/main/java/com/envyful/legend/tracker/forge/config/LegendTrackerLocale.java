@@ -8,8 +8,13 @@ import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 @ConfigPath("config/LegendTracker/locale.yml")
 public class LegendTrackerLocale extends AbstractYamlConfig {
 
+    private String reloadedConfigs = "&e&l(!) &eReloaded configs";
+
     public LegendTrackerLocale() {
         super();
     }
 
+    public String getReloadedConfigs() {
+        return this.reloadedConfigs;
+    }
 }

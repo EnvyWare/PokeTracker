@@ -41,7 +41,7 @@ public class LegendTrackerForge {
         this.reloadConfig();
     }
 
-    private void reloadConfig() {
+    public void reloadConfig() {
         try {
             this.config = YamlConfigFactory.getInstance(LegendTrackerConfig.class);
             this.locale = YamlConfigFactory.getInstance(LegendTrackerLocale.class);
