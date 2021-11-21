@@ -10,6 +10,7 @@ import com.envyful.poke.tracker.forge.config.PokeTrackerConfig;
 import com.envyful.poke.tracker.forge.config.PokeTrackerGui;
 import com.envyful.poke.tracker.forge.config.PokeTrackerLocale;
 import com.envyful.poke.tracker.forge.tracker.PokeTrackerFactory;
+import com.envyful.poke.tracker.forge.tracker.listener.PokemonCatchListener;
 import com.envyful.poke.tracker.forge.tracker.listener.PokemonSpawnListener;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -61,6 +62,7 @@ public class PokeTrackerForge {
     @Mod.EventHandler
     public void onServerStart(FMLServerStartingEvent event) {
         new PokemonSpawnListener();
+        new PokemonCatchListener();
 
         this.commandFactory.registerCommand(event.getServer(), new PokeTrackerCommand());
     }
