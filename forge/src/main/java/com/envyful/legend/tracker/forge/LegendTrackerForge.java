@@ -5,6 +5,7 @@ import com.envyful.api.forge.command.ForgeCommandFactory;
 import com.envyful.api.forge.gui.factory.ForgeGuiFactory;
 import com.envyful.api.forge.player.ForgePlayerManager;
 import com.envyful.api.gui.factory.GuiFactory;
+import com.envyful.legend.tracker.forge.command.LegendTrackerCommand;
 import com.envyful.legend.tracker.forge.config.LegendTrackerConfig;
 import com.envyful.legend.tracker.forge.config.LegendTrackerLocale;
 import net.minecraftforge.fml.common.Mod;
@@ -51,7 +52,7 @@ public class LegendTrackerForge {
 
     @Mod.EventHandler
     public void onServerStart(FMLServerStartingEvent event) {
-
+        this.commandFactory.registerCommand(event.getServer(), new LegendTrackerCommand());
     }
 
     public static LegendTrackerForge getInstance() {
