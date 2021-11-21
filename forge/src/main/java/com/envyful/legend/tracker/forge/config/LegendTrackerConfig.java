@@ -18,36 +18,30 @@ public class LegendTrackerConfig extends AbstractYamlConfig {
 
     private Map<String, TrackerSection> trackers = ImmutableMap.of(
             "legends", new TrackerSection(
-                    "legendaries", "isLegend:1", Lists.newArrayList("hoopa"), true,
-                    true, Lists.newArrayList(
-                    "&e&l(!) &eA %pokemon% has spawned near you!"
-            ), Lists.newArrayList(
-                    "&e&l(!) &eA &b%pokemon%&e has spawned near &a%player%"
-            ), new PositionableConfigItem("pixelmon:ui_element", 1, (byte) 0, "&bLast Legendaries",
-                                          Lists.newArrayList(
-                                                  "&8• &6%pokemon_legends_1%&8 - &f%time% &8[&f%status_legends_1%&8]",
-                                                  "&8• &6%pokemon_legends_2%&8 - &f%time% &8[&f%status_legends_2%&8]",
-                                                  "&8• &6%pokemon_legends_3%&8 - &f%time% &8[&f%status_legends_3%&8]"
-                                          ), 1, 1,
-                                          ImmutableMap.of(
-                                                  "UIImage", new ConfigItem.NBTValue("string", "texture:pixelmon/textures/gui/uielements/flatcat.png")
-                                          ))
+                    "legendaries", "isLegend:1", Lists.newArrayList("hoopa"),
+                    new PositionableConfigItem("pixelmon:ui_element", 1, (byte) 0, "&bLast Legendaries",
+                                               Lists.newArrayList(
+                                                       "&8• &6%pokemon_legends_1%&8 - &f%time% &8[&f%status_legends_1%&8]",
+                                                       "&8• &6%pokemon_legends_2%&8 - &f%time% &8[&f%status_legends_2%&8]",
+                                                       "&8• &6%pokemon_legends_3%&8 - &f%time% &8[&f%status_legends_3%&8]"
+                                               ), 1, 1,
+                                               ImmutableMap.of(
+                                                       "UIImage", new ConfigItem.NBTValue("string", "texture:pixelmon/textures/gui/uielements/flatcat.png")
+                                               )
+                    )
             ),
             "ultrabeast", new TrackerSection(
-                    "ultrabeast", "isUB:1", Lists.newArrayList("hoopa"), true,
-                    true, Lists.newArrayList(
-                    "&e&l(!) &eA %pokemon% has spawned near you!"
-            ), Lists.newArrayList(
-                    "&e&l(!) &eA &b%pokemon%&e has spawned near &a%player%"
-            ), new PositionableConfigItem("pixelmon:ui_element", 1, (byte) 0, "&bLast UltraBeasts",
-                                          Lists.newArrayList(
-                                                  "&8• &6%pokemon_ultrabeast_1%&8 - &f%time% &8[&f%status_ultrabeast_1%&8]",
-                                                  "&8• &6%pokemon_ultrabeast_2%&8 - &f%time% &8[&f%status_ultrabeast_2%&8]",
-                                                  "&8• &6%pokemon_ultrabeast_3%&8 - &f%time% &8[&f%status_ultrabeast_3%&8]"
-                                          ), 3, 1,
-                                          ImmutableMap.of(
-                                                  "UIImage", new ConfigItem.NBTValue("string", "texture:pixelmon/textures/gui/uielements/flatcat.png")
-                                          ))
+                    "ultrabeast", "isUB:1", Lists.newArrayList("hoopa"),
+                    new PositionableConfigItem("pixelmon:ui_element", 1, (byte) 0, "&bLast UltraBeasts",
+                                               Lists.newArrayList(
+                                                       "&8• &6%pokemon_ultrabeast_1%&8 - &f%time% &8[&f%status_ultrabeast_1%&8]",
+                                                       "&8• &6%pokemon_ultrabeast_2%&8 - &f%time% &8[&f%status_ultrabeast_2%&8]",
+                                                       "&8• &6%pokemon_ultrabeast_3%&8 - &f%time% &8[&f%status_ultrabeast_3%&8]"
+                                               ), 3, 1,
+                                               ImmutableMap.of(
+                                                       "UIImage", new ConfigItem.NBTValue("string", "texture:pixelmon/textures/gui/uielements/flatcat.png")
+                                               )
+                    )
             )
     );
 
@@ -67,43 +61,17 @@ public class LegendTrackerConfig extends AbstractYamlConfig {
         private transient PokemonSpec trackerSpec = null;
         private List<String> blacklist;
         private transient List<PokemonSpec> blacklistSpec = null;
-        private boolean messageNearbyPlayer;
-        private boolean announceSpawn;
-        private List<String> nearbyMessage;
-        private List<String> broadcast;
         private PositionableConfigItem displayItem;
 
-        public TrackerSection(String name, String spec, List<String> blacklist, boolean messageNearbyPlayer,
-                              boolean announceSpawn, List<String> nearbyMessage, List<String> broadcast,
-                              PositionableConfigItem displayItem) {
+        public TrackerSection(String name, String spec, List<String> blacklist, PositionableConfigItem displayItem) {
             this.name = name;
             this.spec = spec;
             this.blacklist = blacklist;
-            this.messageNearbyPlayer = messageNearbyPlayer;
-            this.announceSpawn = announceSpawn;
-            this.nearbyMessage = nearbyMessage;
-            this.broadcast = broadcast;
             this.displayItem = displayItem;
         }
 
         public String getName() {
             return this.name;
-        }
-
-        public boolean isMessageNearbyPlayer() {
-            return this.messageNearbyPlayer;
-        }
-
-        public boolean isAnnounceSpawn() {
-            return this.announceSpawn;
-        }
-
-        public List<String> getNearbyMessage() {
-            return this.nearbyMessage;
-        }
-
-        public List<String> getBroadcast() {
-            return this.broadcast;
         }
 
         public PositionableConfigItem getDisplayItem() {
