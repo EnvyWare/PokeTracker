@@ -62,11 +62,19 @@ public class LegendTrackerForge {
         return instance;
     }
 
+    public LegendTrackerConfig getConfig() {
+        return this.config;
+    }
+
     public LegendTrackerLocale getLocale() {
         return this.locale;
     }
 
     public LegendTrackerGui getGui() {
         return this.gui;
+    }
+
+    public ForgePlayerManager getPlayerManager() {
+        return this.playerManager;
     }
 }

@@ -4,6 +4,8 @@ import com.envyful.api.command.annotate.Command;
 import com.envyful.api.command.annotate.SubCommands;
 import com.envyful.api.command.annotate.executor.CommandProcessor;
 import com.envyful.api.command.annotate.executor.Sender;
+import com.envyful.legend.tracker.forge.LegendTrackerForge;
+import com.envyful.legend.tracker.forge.gui.LegendTrackerUI;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 @Command(
@@ -26,6 +28,6 @@ public class LegendTrackerCommand {
 
         @CommandProcessor
         public void onCommand(@Sender EntityPlayerMP player, String[] args) {
-
+                LegendTrackerUI.open(LegendTrackerForge.getInstance().getPlayerManager().getPlayer(player));
         }
 }
