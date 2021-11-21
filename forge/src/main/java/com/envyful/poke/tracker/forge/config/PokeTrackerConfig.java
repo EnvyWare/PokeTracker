@@ -21,9 +21,9 @@ public class PokeTrackerConfig extends AbstractYamlConfig {
                     "legendaries", "isLegend:1", Lists.newArrayList("hoopa"),
                     new PositionableConfigItem("pixelmon:ui_element", 1, (byte) 0, "&bLast Legendaries",
                                                Lists.newArrayList(
-                                                       "&8• &6%pokemon_legends_1%&8 - &f%time% &8[&f%status_legends_1%&8]",
-                                                       "&8• &6%pokemon_legends_2%&8 - &f%time% &8[&f%status_legends_2%&8]",
-                                                       "&8• &6%pokemon_legends_3%&8 - &f%time% &8[&f%status_legends_3%&8]"
+                                                       "&8• &6%pokemon_legends_1%&8 - &f%time_legends_1% &8[&f%status_legends_1%&8]",
+                                                       "&8• &6%pokemon_legends_2%&8 - &f%time_legends_2% &8[&f%status_legends_2%&8]",
+                                                       "&8• &6%pokemon_legends_3%&8 - &f%time_legends_3% &8[&f%status_legends_3%&8]"
                                                ), 1, 1,
                                                ImmutableMap.of(
                                                        "UIImage", new ConfigItem.NBTValue("string", "texture:pixelmon/textures/gui/uielements/flatcat.png")
@@ -34,9 +34,9 @@ public class PokeTrackerConfig extends AbstractYamlConfig {
                     "ultrabeast", "isUB:1", Lists.newArrayList("hoopa"),
                     new PositionableConfigItem("pixelmon:ui_element", 1, (byte) 0, "&bLast UltraBeasts",
                                                Lists.newArrayList(
-                                                       "&8• &6%pokemon_ultrabeast_1%&8 - &f%time% &8[&f%status_ultrabeast_1%&8]",
-                                                       "&8• &6%pokemon_ultrabeast_2%&8 - &f%time% &8[&f%status_ultrabeast_2%&8]",
-                                                       "&8• &6%pokemon_ultrabeast_3%&8 - &f%time% &8[&f%status_ultrabeast_3%&8]"
+                                                       "&8• &6%pokemon_ultrabeast_1%&8 - &f%time_ultrabeast_1% &8[&f%status_ultrabeast_1%&8]",
+                                                       "&8• &6%pokemon_ultrabeast_2%&8 - &f%time_ultrabeast_2% &8[&f%status_ultrabeast_2%&8]",
+                                                       "&8• &6%pokemon_ultrabeast_3%&8 - &f%time_ultrabeast_3% &8[&f%status_ultrabeast_3%&8]"
                                                ), 3, 1,
                                                ImmutableMap.of(
                                                        "UIImage", new ConfigItem.NBTValue("string", "texture:pixelmon/textures/gui/uielements/flatcat.png")
@@ -63,6 +63,9 @@ public class PokeTrackerConfig extends AbstractYamlConfig {
         private List<String> blacklist;
         private transient List<PokemonSpec> blacklistSpec = null;
         private PositionableConfigItem displayItem;
+
+        public TrackerSection() {
+        }
 
         public TrackerSection(String name, String spec, List<String> blacklist, PositionableConfigItem displayItem) {
             this.name = name;

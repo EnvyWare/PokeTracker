@@ -29,13 +29,14 @@ public class PokeTrackerUI {
 
         for (PokeTrackerConfig.TrackerSection value :
                 PokeTrackerForge.getInstance().getConfig().getTrackers().values()) {
-
+            UtilConfigItem.addConfigItem(pane, value.getDisplayItem());
         }
 
         GuiFactory.guiBuilder()
                 .setPlayerManager(PokeTrackerForge.getInstance().getPlayerManager())
                 .addPane(pane)
                 .height(config.getGuiSettings().getHeight())
+                .setCloseConsumer(envyPlayer -> {})
                 .title(UtilChatColour.translateColourCodes('&', config.getGuiSettings().getTitle()))
                 .build().open(player);
     }

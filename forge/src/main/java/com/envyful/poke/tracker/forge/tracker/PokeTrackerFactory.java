@@ -1,28 +1,24 @@
 package com.envyful.poke.tracker.forge.tracker;
 
+import com.envyful.api.json.UtilGson;
 import com.envyful.poke.tracker.forge.PokeTrackerForge;
 import com.envyful.poke.tracker.forge.config.PokeTrackerConfig;
 import com.envyful.poke.tracker.forge.tracker.data.EntityData;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.pixelmonmod.pixelmon.api.pokemon.PokemonSpec;
 import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class PokeTrackerFactory {
 
     private static final Map<String, List<EntityData>> TRACKED_ENTITIES = Maps.newHashMap();
-    private static final Path LEGEND_TRACKER_FILE = Paths.get("config/WonderTradeForge/pool.json");
+    private static final Path POKE_TRACKER_FILE = Paths.get("config/PokeTracker/tracker.json");
 
     public static List<EntityData> getTrackedEntities(String name) {
         return TRACKED_ENTITIES.get(name.toLowerCase());
@@ -46,23 +42,29 @@ public class PokeTrackerFactory {
 
     public static void load() {
         try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-
-            for (PokemonSpec pokemonSpec : tradePool) {
-                ByteBuf buf = Unpooled.buffer();
-                pokemonSpec.toBytes(buf);
-                bufferedWriter.write(buf.toString(StandardCharsets.UTF_8));
-                bufferedWriter.newLine();
-                buf.release();
+            if (!POKE_TRACKER_FILE.toFile().exists()) {
+                POKE_TRACKER_FILE.toFile().createNewFile();
             }
 
-            bufferedWriter.close();
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(POKE_TRACKER_FILE.toFile()));
+            TRACKED_ENTITIES.putAll(UtilGson.GSON.fromJson(bufferedReader, HashMap.class));
+            bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static void save() {
+        try {
+            if (!POKE_TRACKER_FILE.toFile().exists()) {
+                POKE_TRACKER_FILE.toFile().createNewFile();
+            }
 
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(POKE_TRACKER_FILE.toFile()));
+            UtilGson.GSON.toJson(TRACKED_ENTITIES, bufferedWriter);
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
