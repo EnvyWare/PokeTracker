@@ -9,6 +9,7 @@ import com.envyful.api.player.EnvyPlayer;
 import com.envyful.poke.tracker.forge.PokeTrackerForge;
 import com.envyful.poke.tracker.forge.config.PokeTrackerConfig;
 import com.envyful.poke.tracker.forge.config.PokeTrackerGui;
+import com.google.common.collect.Lists;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 public class PokeTrackerUI {
@@ -29,7 +30,9 @@ public class PokeTrackerUI {
 
         for (PokeTrackerConfig.TrackerSection value :
                 PokeTrackerForge.getInstance().getConfig().getTrackers().values()) {
-            UtilConfigItem.addConfigItem(pane, value.getDisplayItem());
+            UtilConfigItem.addConfigItem(pane, Lists.newArrayList(PlaceholderAPITransformer.of(player.getParent())),
+                                         value.getDisplayItem()
+            );
         }
 
         GuiFactory.guiBuilder()
