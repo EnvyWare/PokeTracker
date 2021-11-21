@@ -6,6 +6,7 @@ import com.envyful.api.forge.gui.factory.ForgeGuiFactory;
 import com.envyful.api.forge.player.ForgePlayerManager;
 import com.envyful.api.gui.factory.GuiFactory;
 import com.envyful.legend.tracker.forge.config.LegendTrackerConfig;
+import com.envyful.legend.tracker.forge.config.LegendTrackerLocale;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
@@ -30,6 +31,7 @@ public class LegendTrackerForge {
     private ForgePlayerManager playerManager = new ForgePlayerManager();
 
     private LegendTrackerConfig config;
+    private LegendTrackerLocale locale;
 
     @Mod.EventHandler
     public void onInit(FMLInitializationEvent event) {
@@ -41,6 +43,7 @@ public class LegendTrackerForge {
     private void reloadConfig() {
         try {
             this.config = YamlConfigFactory.getInstance(LegendTrackerConfig.class);
+            this.locale = YamlConfigFactory.getInstance(LegendTrackerLocale.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,5 +56,9 @@ public class LegendTrackerForge {
 
     public static LegendTrackerForge getInstance() {
         return instance;
+    }
+
+    public LegendTrackerLocale getLocale() {
+        return this.locale;
     }
 }
