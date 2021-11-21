@@ -1,7 +1,7 @@
-package com.envyful.legend.tracker.forge.tracker.listener;
+package com.envyful.poke.tracker.forge.tracker.listener;
 
 import com.envyful.api.concurrency.UtilConcurrency;
-import com.envyful.legend.tracker.forge.tracker.LegendTrackerFactory;
+import com.envyful.poke.tracker.forge.tracker.PokeTrackerFactory;
 import com.pixelmonmod.pixelmon.Pixelmon;
 import com.pixelmonmod.pixelmon.api.events.spawning.SpawnEvent;
 import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
@@ -23,7 +23,7 @@ public class PokemonSpawnListener {
         }
 
         UtilConcurrency.runAsync(() -> {
-            LegendTrackerFactory.addTrackedEntities((EntityPixelmon) entity);
+            PokeTrackerFactory.addTrackedEntities((EntityPixelmon) entity);
         });
     }
 }

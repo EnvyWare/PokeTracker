@@ -1,4 +1,4 @@
-package com.envyful.legend.tracker.forge.tracker.data;
+package com.envyful.poke.tracker.forge.tracker.data;
 
 import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
 import net.minecraft.entity.Entity;

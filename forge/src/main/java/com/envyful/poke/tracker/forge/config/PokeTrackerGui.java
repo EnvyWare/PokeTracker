@@ -1,4 +1,4 @@
-package com.envyful.legend.tracker.forge.config;
+package com.envyful.poke.tracker.forge.config;
 
 import com.envyful.api.config.data.ConfigPath;
 import com.envyful.api.config.type.ConfigInterface;
@@ -10,8 +10,8 @@ import com.google.common.collect.Maps;
 import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 
 @ConfigSerializable
-@ConfigPath("config/LegendTracker/guis.yml")
-public class LegendTrackerGui extends AbstractYamlConfig {
+@ConfigPath("config/PokeTracker/guis.yml")
+public class PokeTrackerGui extends AbstractYamlConfig {
 
     private ConfigInterface guiSettings = new ConfigInterface(
             "Pokemon Tracker", 6, "BLOCK", ImmutableMap.of("one", new ConfigItem(
@@ -19,7 +19,7 @@ public class LegendTrackerGui extends AbstractYamlConfig {
             Lists.newArrayList(), Maps.newHashMap()
     )));
 
-    public LegendTrackerGui() {
+    public PokeTrackerGui() {
         super();
     }
 

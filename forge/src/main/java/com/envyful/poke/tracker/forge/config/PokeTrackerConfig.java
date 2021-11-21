@@ -1,4 +1,4 @@
-package com.envyful.legend.tracker.forge.config;
+package com.envyful.poke.tracker.forge.config;
 
 import com.envyful.api.config.data.ConfigPath;
 import com.envyful.api.config.type.ConfigItem;
@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Map;
 
 @ConfigSerializable
-@ConfigPath("config/LegendTracker/config.yml")
-public class LegendTrackerConfig extends AbstractYamlConfig {
+@ConfigPath("config/PokeTracker/config.yml")
+public class PokeTrackerConfig extends AbstractYamlConfig {
 
     private Map<String, TrackerSection> trackers = ImmutableMap.of(
             "legends", new TrackerSection(
@@ -45,7 +45,7 @@ public class LegendTrackerConfig extends AbstractYamlConfig {
             )
     );
 
-    public LegendTrackerConfig() {
+    public PokeTrackerConfig() {
         super();
     }
 

@@ -1,2 +1,2 @@
-rootProject.name = 'LegendTracker'
+rootProject.name = 'PokeTracker'
 include 'forge'

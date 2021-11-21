@@ -1,15 +1,15 @@
-package com.envyful.legend.tracker.forge.command;
+package com.envyful.poke.tracker.forge.command;
 
 import com.envyful.api.command.annotate.Command;
 import com.envyful.api.command.annotate.SubCommands;
 import com.envyful.api.command.annotate.executor.CommandProcessor;
 import com.envyful.api.command.annotate.executor.Sender;
-import com.envyful.legend.tracker.forge.LegendTrackerForge;
-import com.envyful.legend.tracker.forge.gui.LegendTrackerUI;
+import com.envyful.poke.tracker.forge.PokeTrackerForge;
+import com.envyful.poke.tracker.forge.gui.PokeTrackerUI;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 @Command(
-        value = "legendtracker",
+        value = "poketracker",
         description = "Opens the tracker UI",
         aliases = {
                 "lastlegend",
@@ -24,10 +24,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 @SubCommands(
         ReloadCommand.class
 )
-public class LegendTrackerCommand {
+public class PokeTrackerCommand {
 
         @CommandProcessor
         public void onCommand(@Sender EntityPlayerMP player, String[] args) {
-                LegendTrackerUI.open(LegendTrackerForge.getInstance().getPlayerManager().getPlayer(player));
+                PokeTrackerUI.open(PokeTrackerForge.getInstance().getPlayerManager().getPlayer(player));
         }
 }
