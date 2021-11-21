@@ -41,6 +41,8 @@ dependencies {
 
     shadow group: 'org.spongepowered', name: 'configurate-yaml', version: '4.0.0'
 
+    compileOnly 'com.github.Pixelmon-Development.ForgePlaceholderAPI:api:0.0.1'
+
     shadow group: 'com.github.Daniel-Forge-Development.API', name: 'commons', version: '1.2.3'
     shadow group: 'com.github.Daniel-Forge-Development.API', name: 'forge', version: '1.2.3'
     shadow group: 'com.github.Daniel-Forge-Development.API', name: 'reforged', version: '1.2.3'
