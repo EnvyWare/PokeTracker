@@ -10,14 +10,20 @@ public class EntityData {
 
     private final String pokemonName;
     private final UUID entityUUID;
+    private final long spawnTime;
 
     public static EntityData of(EntityPixelmon pixelmon) {
-        return new EntityData(pixelmon.getPokemonName(), pixelmon.getUniqueID());
+        return new EntityData(pixelmon.getPokemonName(), pixelmon.getUniqueID(), System.currentTimeMillis());
     }
 
-    private EntityData(String pokemonName, UUID entityUUID) {
+    public static EntityData of(EntityPixelmon pixelmon, long time) {
+        return new EntityData(pixelmon.getPokemonName(), pixelmon.getUniqueID(), time);
+    }
+
+    private EntityData(String pokemonName, UUID entityUUID, long spawnTime) {
         this.pokemonName = pokemonName;
         this.entityUUID = entityUUID;
+        this.spawnTime = spawnTime;
     }
 
     public String getPokemonName() {
@@ -26,6 +32,10 @@ public class EntityData {
 
     public UUID getEntityUUID() {
         return this.entityUUID;
+    }
+
+    public long getSpawnTime() {
+        return this.spawnTime;
     }
 
     public Entity getEntity() {
