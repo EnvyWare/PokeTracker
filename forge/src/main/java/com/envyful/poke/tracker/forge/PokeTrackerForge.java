@@ -23,12 +23,13 @@ import java.io.IOException;
         modid = PokeTrackerForge.MOD_ID,
         name = "PokeTracker Forge",
         version = PokeTrackerForge.VERSION,
-        acceptableRemoteVersions = "*"
+        acceptableRemoteVersions = "*",
+        updateJSON = "https://ogn.pixelmonmod.com/update/sm-pk/update.json"
 )
 public class PokeTrackerForge {
 
     protected static final String MOD_ID = "poketracker";
-    protected static final String VERSION = "0.1.0";
+    protected static final String VERSION = "0.1.1";
 
     @Mod.Instance(MOD_ID)
     private static PokeTrackerForge instance;
