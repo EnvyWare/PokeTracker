@@ -29,7 +29,7 @@ import java.io.IOException;
 public class PokeTrackerForge {
 
     protected static final String MOD_ID = "poketracker";
-    protected static final String VERSION = "0.1.2";
+    protected static final String VERSION = "0.1.3";
 
     @Mod.Instance(MOD_ID)
     private static PokeTrackerForge instance;
