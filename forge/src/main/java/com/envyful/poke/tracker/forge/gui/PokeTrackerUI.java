@@ -6,11 +6,17 @@ import com.envyful.api.forge.config.UtilConfigItem;
 import com.envyful.api.gui.factory.GuiFactory;
 import com.envyful.api.gui.pane.Pane;
 import com.envyful.api.player.EnvyPlayer;
+import com.envyful.api.reforged.pixelmon.transformer.PokemonSpriteTransformer;
 import com.envyful.poke.tracker.forge.PokeTrackerForge;
 import com.envyful.poke.tracker.forge.config.PokeTrackerConfig;
 import com.envyful.poke.tracker.forge.config.PokeTrackerGui;
+import com.envyful.poke.tracker.forge.tracker.PokeTrackerFactory;
+import com.envyful.poke.tracker.forge.tracker.data.EntityData;
 import com.google.common.collect.Lists;
+import com.pixelmonmod.pixelmon.enums.EnumSpecies;
 import net.minecraft.entity.player.EntityPlayerMP;
+
+import java.util.List;
 
 public class PokeTrackerUI {
 
@@ -30,9 +36,16 @@ public class PokeTrackerUI {
 
         for (PokeTrackerConfig.TrackerSection value :
                 PokeTrackerForge.getInstance().getConfig().getTrackers().values()) {
-            UtilConfigItem.addConfigItem(pane, Lists.newArrayList(PlaceholderAPITransformer.of(player.getParent())),
-                                         value.getDisplayItem()
-            );
+            List<EntityData> trackedEntities = PokeTrackerFactory.getTrackedEntities(value.getName());
+            EnumSpecies species = EnumSpecies.MissingNo;
+
+            if (!trackedEntities.isEmpty()) {
+                species = EnumSpecies.getFromNameAnyCase(trackedEntities.get(0).getPokemonName());
+            }
+
+            UtilConfigItem.addConfigItem(pane, Lists.newArrayList(
+                    PlaceholderAPITransformer.of(player.getParent()),
+                    PokemonSpriteTransformer.of(species)), value.getDisplayItem());
         }
 
         GuiFactory.guiBuilder()

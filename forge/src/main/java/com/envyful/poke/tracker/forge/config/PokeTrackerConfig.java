@@ -26,7 +26,7 @@ public class PokeTrackerConfig extends AbstractYamlConfig {
                                                        "&8• &6%poketracker_pokemon_legends_3%&8 - &f%poketracker_time_legends_3% &8[&f%poketracker_status_legends_3%&8]"
                                                ), 1, 1,
                                                ImmutableMap.of(
-                                                       "UIImage", new ConfigItem.NBTValue("string", "pixelmon:textures/gui/uielements/flatcat.png")
+                                                       "UIImage", new ConfigItem.NBTValue("string", "%sprite%")
                                                )
                     )
             ),
@@ -39,7 +39,7 @@ public class PokeTrackerConfig extends AbstractYamlConfig {
                                                        "&8• &6%poketracker_pokemon_ultrabeast_3%&8 - &f%poketracker_time_ultrabeast_3% &8[&f%poketracker_status_ultrabeast_3%&8]"
                                                ), 3, 1,
                                                ImmutableMap.of(
-                                                       "UIImage", new ConfigItem.NBTValue("string", "pixelmon:textures/gui/uielements/flatcat.png")
+                                                       "UIImage", new ConfigItem.NBTValue("string", "%sprite%")
                                                )
                     )
             )
