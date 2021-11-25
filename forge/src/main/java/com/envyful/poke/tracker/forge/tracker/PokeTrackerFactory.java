@@ -86,7 +86,8 @@ public class PokeTrackerFactory {
                                     UUID.fromString((String) treeEntry.get("entityUUID")),
                                     (String) treeEntry.get("pokemonName"),
                                     (long) ((double) treeEntry.get("spawnTime")),
-                                    (boolean) treeEntry.get("caught")
+                                    (boolean) treeEntry.get("caught"),
+                                    (String) treeEntry.get("catcher")
                             )
                     );
                 }
