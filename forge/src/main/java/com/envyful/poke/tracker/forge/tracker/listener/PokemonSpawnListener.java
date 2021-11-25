@@ -23,7 +23,13 @@ public class PokemonSpawnListener {
         }
 
         UtilConcurrency.runAsync(() -> {
-            PokeTrackerFactory.addTrackedEntities((EntityPixelmon) entity);
+            EntityPixelmon pixelmon = (EntityPixelmon) entity;
+
+            if (pixelmon.getOwner() != null) {
+                return;
+            }
+
+            PokeTrackerFactory.addTrackedEntities(pixelmon);
         });
     }
 }
