@@ -11,6 +11,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
+import net.minecraft.entity.player.EntityPlayerMP;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -52,7 +53,7 @@ public class PokeTrackerFactory {
         }
     }
 
-    public static void catchPokemon(EntityPixelmon pixelmon) {
+    public static void catchPokemon(EntityPixelmon pixelmon, EntityPlayerMP catcher) {
         for (List<EntityData> value : TRACKED_ENTITIES.values()) {
             for (EntityData entityData : value) {
                 if (entityData.isCaught()) {
@@ -61,6 +62,7 @@ public class PokeTrackerFactory {
 
                 if (entityData.getEntityUUID() == pixelmon.getUniqueID()) {
                     entityData.setCaught(true);
+                    entityData.setCatcher(catcher);
                 }
             }
         }
