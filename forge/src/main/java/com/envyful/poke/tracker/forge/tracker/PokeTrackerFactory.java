@@ -68,6 +68,20 @@ public class PokeTrackerFactory {
         }
     }
 
+    public static void defeatPokemon(EntityPixelmon pixelmon, EntityPlayerMP catcher) {
+        for (List<EntityData> value : TRACKED_ENTITIES.values()) {
+            for (EntityData entityData : value) {
+                if (entityData.isCaught()) {
+                    continue;
+                }
+
+                if (entityData.getEntityUUID() == pixelmon.getUniqueID()) {
+                    entityData.setCatcher(catcher);
+                }
+            }
+        }
+    }
+
     public static void load() {
         try {
             if (!POKE_TRACKER_FILE.toFile().exists()) {

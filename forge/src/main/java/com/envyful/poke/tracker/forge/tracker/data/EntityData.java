@@ -1,5 +1,6 @@
 package com.envyful.poke.tracker.forge.tracker.data;
 
+import com.envyful.poke.tracker.forge.PokeTrackerForge;
 import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -67,10 +68,10 @@ public class EntityData {
     }
 
     public String getCatcher() {
-        if (!this.caught || this.catcher == null) {
-            return "None";
+        if (!this.caught) {
+            return PokeTrackerForge.getInstance().getLocale().getNoCatcher();
         }
 
-        return this.catcher;
+        return PokeTrackerForge.getInstance().getLocale().getCaughtFormat().replace("%player%", this.catcher);
     }
 }

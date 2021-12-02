@@ -9,6 +9,8 @@ import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 public class PokeTrackerLocale extends AbstractYamlConfig {
 
     private String reloadedConfigs = "&e&l(!) &eReloaded configs";
+    private String caughtFormat = "%player%";
+    private String noCatcher = "";
 
     public PokeTrackerLocale() {
         super();
@@ -16,5 +18,13 @@ public class PokeTrackerLocale extends AbstractYamlConfig {
 
     public String getReloadedConfigs() {
         return this.reloadedConfigs;
+    }
+
+    public String getCaughtFormat() {
+        return this.caughtFormat;
+    }
+
+    public String getNoCatcher() {
+        return this.noCatcher;
     }
 }
