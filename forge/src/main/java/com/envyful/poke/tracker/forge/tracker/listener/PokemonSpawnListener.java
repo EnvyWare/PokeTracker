@@ -2,16 +2,16 @@ package com.envyful.poke.tracker.forge.tracker.listener;
 
 import com.envyful.api.concurrency.UtilConcurrency;
 import com.envyful.poke.tracker.forge.tracker.PokeTrackerFactory;
+import com.pixelmonmod.pixelmon.Pixelmon;
 import com.pixelmonmod.pixelmon.api.events.spawning.SpawnEvent;
 import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
 import net.minecraft.entity.Entity;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class PokemonSpawnListener {
 
     public PokemonSpawnListener() {
-        MinecraftForge.EVENT_BUS.register(this);
+        Pixelmon.EVENT_BUS.register(this);
     }
 
     @SubscribeEvent
