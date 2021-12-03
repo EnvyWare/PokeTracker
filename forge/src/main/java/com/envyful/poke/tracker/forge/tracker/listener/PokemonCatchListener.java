@@ -44,7 +44,6 @@ public class PokemonCatchListener {
 
         UtilConcurrency.runAsync(() -> {
             for (EntityPixelmon entityPixelmon : pair.getY()) {
-                System.out.println("DEFEATING: " + entityPixelmon.getName());
                 PokeTrackerFactory.defeatPokemon(entityPixelmon, pair.getX());
             }
         });
@@ -55,7 +54,6 @@ public class PokemonCatchListener {
         EntityPlayerMP player = null;
 
         for (Map.Entry<BattleParticipant, BattleResults> entry : event.results.entrySet()) {
-            System.out.println("HELLO " + entry.getKey().getClass().getSimpleName());
             if (entry.getKey() instanceof WildPixelmonParticipant) {
                 for (PixelmonWrapper pixelmonWrapper : entry.getKey().allPokemon) {
                     pixelmon.add(pixelmonWrapper.entity);
