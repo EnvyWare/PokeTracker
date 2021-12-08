@@ -33,7 +33,7 @@ public class EntityDataTypeAdapter implements JsonSerializer<EntityData>, JsonDe
         object.addProperty("pokemonName", src.getPokemonName());
         object.addProperty("spawnTime", src.getSpawnTime());
         object.addProperty("caught", src.isCaught());
-        object.addProperty("catcher", src.getCatcher());
+        object.addProperty("catcher", src.getCatcher(true));
 
         return object;
     }

@@ -68,7 +68,15 @@ public class EntityData {
     }
 
     public String getCatcher() {
-        if (!this.caught) {
+        return this.getCatcher(false);
+    }
+
+    public String getCatcher(boolean forceDefault) {
+        if (forceDefault) {
+            return this.catcher;
+        }
+
+        if (!this.caught && this.catcher == null) {
             return PokeTrackerForge.getInstance().getLocale().getNoCatcher();
         }
 
