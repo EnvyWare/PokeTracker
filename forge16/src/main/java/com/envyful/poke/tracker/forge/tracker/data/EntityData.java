@@ -20,13 +20,13 @@ public class EntityData {
     private String catcher;
 
     public static EntityData of(PixelmonEntity pixelmon) {
-        return new EntityData(pixelmon.getPokemonName(), pixelmon.getUUID(), System.currentTimeMillis(), false,
+        return new EntityData(pixelmon.getLocalizedName(), pixelmon.getUUID(), System.currentTimeMillis(), false,
                               null
         );
     }
 
     public static EntityData of(PixelmonEntity pixelmon, long time, boolean caught) {
-        return new EntityData(pixelmon.getPokemonName(), pixelmon.getUUID(), time, caught, null);
+        return new EntityData(pixelmon.getLocalizedName(), pixelmon.getUUID(), time, caught, null);
     }
 
     public static EntityData of(UUID uuid, String name, long time, boolean caught, String catcher) {
