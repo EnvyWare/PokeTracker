@@ -53,7 +53,7 @@ public class PokemonCatchListener {
         List<PixelmonEntity> pixelmon = Lists.newArrayList();
         ServerPlayerEntity player = null;
 
-        for (Map.Entry<BattleParticipant, BattleResults> entry : event.results.entrySet()) {
+        for (Map.Entry<BattleParticipant, BattleResults> entry : event.getResults().entrySet()) {
             if (entry.getKey() instanceof WildPixelmonParticipant) {
                 for (PixelmonWrapper pixelmonWrapper : entry.getKey().allPokemon) {
                     pixelmon.add(pixelmonWrapper.entity);
