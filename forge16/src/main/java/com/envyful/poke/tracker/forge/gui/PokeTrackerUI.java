@@ -44,7 +44,7 @@ public class PokeTrackerUI {
 
             UtilConfigItem.addConfigItem(pane, Lists.newArrayList(
                     PlaceholderAPITransformer.of(player.getParent()),
-                    SpriteTransformer.of(species)), value.getDisplayItem());
+                    SpriteTransformer.of(trackedEntities.get(0))), value.getDisplayItem());
         }
 
         GuiFactory.guiBuilder()

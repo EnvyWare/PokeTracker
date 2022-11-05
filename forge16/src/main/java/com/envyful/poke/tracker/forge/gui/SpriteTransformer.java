@@ -1,14 +1,18 @@
 package com.envyful.poke.tracker.forge.gui;
 
 import com.envyful.api.gui.Transformer;
-import com.pixelmonmod.pixelmon.api.pokemon.species.Species;
+import com.envyful.poke.tracker.forge.tracker.data.EntityData;
 
 public class SpriteTransformer implements Transformer {
 
     private final String path;
 
-    public static SpriteTransformer of(Species species) {
-        return new SpriteTransformer(species.getDefaultForm().getDefaultGenderProperties().getDefaultPalette().getSprite().toString());
+    public static SpriteTransformer of(EntityData entity) {
+        if (entity == null || entity.getSprite() == null) {
+            return new SpriteTransformer("pixelmon:species/001_bulbasaur/default/none/sprite.png");
+        }
+
+        return new SpriteTransformer(entity.getSprite());
     }
 
     private SpriteTransformer(String path) {

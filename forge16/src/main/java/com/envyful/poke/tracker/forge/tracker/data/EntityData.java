@@ -13,6 +13,7 @@ import java.util.UUID;
 public class EntityData {
 
     private final String pokemonName;
+    private final String sprite;
     private final UUID entityUUID;
     private final long spawnTime;
 
@@ -20,21 +21,22 @@ public class EntityData {
     private String catcher;
 
     public static EntityData of(PixelmonEntity pixelmon) {
-        return new EntityData(pixelmon.getLocalizedName(), pixelmon.getUUID(), System.currentTimeMillis(), false,
+        return new EntityData(pixelmon.getLocalizedName(), pixelmon.getSprite().toString(), pixelmon.getUUID(), System.currentTimeMillis(), false,
                               null
         );
     }
 
     public static EntityData of(PixelmonEntity pixelmon, long time, boolean caught) {
-        return new EntityData(pixelmon.getLocalizedName(), pixelmon.getUUID(), time, caught, null);
+        return new EntityData(pixelmon.getLocalizedName(), pixelmon.getSprite().toString(), pixelmon.getUUID(), time, caught, null);
     }
 
-    public static EntityData of(UUID uuid, String name, long time, boolean caught, String catcher) {
-        return new EntityData(name, uuid, time, caught, catcher);
+    public static EntityData of(UUID uuid, String name, String sprite, long time, boolean caught, String catcher) {
+        return new EntityData(name, sprite, uuid, time, caught, catcher);
     }
 
-    private EntityData(String pokemonName, UUID entityUUID, long spawnTime, boolean caught, String catcher) {
+    private EntityData(String pokemonName, String sprite, UUID entityUUID, long spawnTime, boolean caught, String catcher) {
         this.pokemonName = pokemonName;
+        this.sprite = sprite;
         this.entityUUID = entityUUID;
         this.spawnTime = spawnTime;
         this.caught = caught;
@@ -43,6 +45,10 @@ public class EntityData {
 
     public String getPokemonName() {
         return this.pokemonName;
+    }
+
+    public String getSprite() {
+        return this.sprite;
     }
 
     public UUID getEntityUUID() {
