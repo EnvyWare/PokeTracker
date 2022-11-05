@@ -101,6 +101,7 @@ public class PokeTrackerFactory {
                             EntityData.of(
                                     UUID.fromString((String) treeEntry.get("entityUUID")),
                                     (String) treeEntry.get("pokemonName"),
+                                    (String) treeEntry.get("sprite"),
                                     (long) ((double) treeEntry.get("spawnTime")),
                                     (boolean) treeEntry.get("caught"),
                                     (String) treeEntry.get("catcher")
