@@ -11,14 +11,20 @@ public class EntityDataTypeAdapter implements JsonSerializer<EntityData>, JsonDe
     public EntityData deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject object = json.getAsJsonObject();
         String catcher = null;
+        String sprite = null;
 
         if (object.has("catcher")) {
             catcher = object.get("catcher").getAsString();
         }
 
+        if (object.has("sprite")) {
+            sprite = object.get("sprite").getAsString();
+        }
+
         return EntityData.of(
                 UUID.fromString(object.get("entityUUID").getAsString()),
                 object.get("pokemonName").getAsString(),
+                sprite,
                 object.get("spawnTime").getAsLong(),
                 object.get("caught").getAsBoolean(),
                 catcher
@@ -33,6 +39,7 @@ public class EntityDataTypeAdapter implements JsonSerializer<EntityData>, JsonDe
         object.addProperty("pokemonName", src.getPokemonName());
         object.addProperty("spawnTime", src.getSpawnTime());
         object.addProperty("caught", src.isCaught());
+        object.addProperty("sprite", src.getSprite());
         object.addProperty("catcher", src.getCatcher(true));
 
         return object;
