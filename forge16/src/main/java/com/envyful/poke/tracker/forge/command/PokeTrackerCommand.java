@@ -26,8 +26,8 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 )
 public class PokeTrackerCommand {
 
-        @CommandProcessor
-        public void onCommand(@Sender ServerPlayerEntity player, String[] args) {
-                PokeTrackerUI.open(PokeTrackerForge.getInstance().getPlayerManager().getPlayer(player));
-        }
+    @CommandProcessor
+    public void onCommand(@Sender ServerPlayerEntity player, String[] args) {
+        PokeTrackerUI.open(PokeTrackerForge.getInstance().getPlayerManager().getPlayer(player));
+    }
 }

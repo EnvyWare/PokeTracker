@@ -1,7 +1,7 @@
 package com.envyful.poke.tracker.forge.gui;
 
-import com.envyful.api.config.type.ConfigItem;
 import com.envyful.api.forge.chat.UtilChatColour;
+import com.envyful.api.forge.config.UtilConfigInterface;
 import com.envyful.api.forge.config.UtilConfigItem;
 import com.envyful.api.forge.player.ForgeEnvyPlayer;
 import com.envyful.api.gui.factory.GuiFactory;
@@ -12,8 +12,6 @@ import com.envyful.poke.tracker.forge.config.PokeTrackerGui;
 import com.envyful.poke.tracker.forge.tracker.PokeTrackerFactory;
 import com.envyful.poke.tracker.forge.tracker.data.EntityData;
 import com.google.common.collect.Lists;
-import com.pixelmonmod.pixelmon.api.pokemon.species.Species;
-import com.pixelmonmod.pixelmon.api.registries.PixelmonSpecies;
 
 import java.util.List;
 
@@ -29,17 +27,17 @@ public class PokeTrackerUI {
                 .height(config.getGuiSettings().getHeight())
                 .build();
 
-        for (ConfigItem fillerItem : config.getGuiSettings().getFillerItems()) {
-            pane.add(GuiFactory.displayable(UtilConfigItem.fromConfigItem(fillerItem)));
-        }
+        UtilConfigInterface.fillBackground(pane, config.getGuiSettings());
 
         for (PokeTrackerConfig.TrackerSection value :
                 PokeTrackerForge.getInstance().getConfig().getTrackers().values()) {
             List<EntityData> trackedEntities = PokeTrackerFactory.getTrackedEntities(value.getName());
-            Species species = PixelmonSpecies.MISSINGNO.getValueUnsafe();
 
-            if (!trackedEntities.isEmpty()) {
-                species = PixelmonSpecies.fromName(trackedEntities.get(0).getPokemonName()).getValueUnsafe();
+            if (trackedEntities.isEmpty()) {
+                UtilConfigItem.addConfigItem(pane, Lists.newArrayList(
+                        PlaceholderAPITransformer.of(player.getParent()),
+                        SpriteTransformer.of(null)), value.getDisplayItem());
+                continue;
             }
 
             UtilConfigItem.addConfigItem(pane, Lists.newArrayList(
@@ -51,8 +49,7 @@ public class PokeTrackerUI {
                 .setPlayerManager(PokeTrackerForge.getInstance().getPlayerManager())
                 .addPane(pane)
                 .height(config.getGuiSettings().getHeight())
-                .setCloseConsumer(envyPlayer -> {})
-                .title(UtilChatColour.translateColourCodes('&', config.getGuiSettings().getTitle()))
+                .title(UtilChatColour.colour(config.getGuiSettings().getTitle()))
                 .build().open(player);
     }
 
