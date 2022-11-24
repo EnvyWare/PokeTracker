@@ -30,7 +30,7 @@ public class PokemonCatchListener {
         PixelmonEntity entity = event.getPokemon();
 
         UtilConcurrency.runAsync(() -> {
-            PokeTrackerFactory.catchPokemon(entity, event.player);
+            PokeTrackerFactory.catchPokemon(entity, event.getPlayer());
         });
     }
 
