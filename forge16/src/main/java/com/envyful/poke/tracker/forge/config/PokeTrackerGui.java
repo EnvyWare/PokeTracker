@@ -5,8 +5,6 @@ import com.envyful.api.config.type.ConfigInterface;
 import com.envyful.api.config.type.ConfigItem;
 import com.envyful.api.config.yaml.AbstractYamlConfig;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 
 @ConfigSerializable
@@ -14,10 +12,12 @@ import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 public class PokeTrackerGui extends AbstractYamlConfig {
 
     private ConfigInterface guiSettings = new ConfigInterface(
-            "Pokemon Tracker", 6, "BLOCK", ImmutableMap.of("one", new ConfigItem(
-            "minecraft:stained_glass_pane", 1, (byte) 15, " ",
-            Lists.newArrayList(), Maps.newHashMap()
-    )));
+            "Pokemon Tracker", 6, "BLOCK", ImmutableMap.of("one", ConfigItem.builder()
+                    .type("minecraft:black_stained_glass_pane")
+                    .amount(1)
+                    .name(" ")
+                    .build()
+    ));
 
     public PokeTrackerGui() {
         super();

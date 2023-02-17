@@ -11,7 +11,6 @@ import com.envyful.poke.tracker.forge.config.PokeTrackerConfig;
 import com.envyful.poke.tracker.forge.config.PokeTrackerGui;
 import com.envyful.poke.tracker.forge.tracker.PokeTrackerFactory;
 import com.envyful.poke.tracker.forge.tracker.data.EntityData;
-import com.google.common.collect.Lists;
 
 import java.util.List;
 
@@ -34,15 +33,17 @@ public class PokeTrackerUI {
             List<EntityData> trackedEntities = PokeTrackerFactory.getTrackedEntities(value.getName());
 
             if (trackedEntities.isEmpty()) {
-                UtilConfigItem.addConfigItem(pane, Lists.newArrayList(
-                        PlaceholderAPITransformer.of(player.getParent()),
-                        SpriteTransformer.of(null)), value.getDisplayItem());
+                UtilConfigItem.builder()
+                                .extendedConfigItem(player, pane, value.getDisplayItem(),
+                                        PlaceholderAPITransformer.of(player.getParent()),
+                                        SpriteTransformer.of(null));
                 continue;
             }
 
-            UtilConfigItem.addConfigItem(pane, Lists.newArrayList(
-                    PlaceholderAPITransformer.of(player.getParent()),
-                    SpriteTransformer.of(trackedEntities.get(0))), value.getDisplayItem());
+            UtilConfigItem.builder()
+                    .extendedConfigItem(player, pane, value.getDisplayItem(),
+                            PlaceholderAPITransformer.of(player.getParent()),
+                            SpriteTransformer.of(trackedEntities.get(0)));
         }
 
         GuiFactory.guiBuilder()
