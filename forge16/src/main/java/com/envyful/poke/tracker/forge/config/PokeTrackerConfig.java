@@ -46,12 +46,33 @@ public class PokeTrackerConfig extends AbstractYamlConfig {
             )
     );
 
+    private String caughtText = "Caught";
+    private String defeatedText = "Defeated";
+    private String despawnedText = "Despawned";
+    private String activeText = "Active";
+
     public PokeTrackerConfig() {
         super();
     }
 
     public Map<String, TrackerSection> getTrackers() {
         return this.trackers;
+    }
+
+    public String getCaughtText() {
+        return this.caughtText;
+    }
+
+    public String getDefeatedText() {
+        return this.defeatedText;
+    }
+
+    public String getDespawnedText() {
+        return this.despawnedText;
+    }
+
+    public String getActiveText() {
+        return this.activeText;
     }
 
     @ConfigSerializable
