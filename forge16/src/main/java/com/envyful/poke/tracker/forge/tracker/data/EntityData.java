@@ -67,7 +67,17 @@ public class EntityData {
             Entity entity = next.getEntity(this.getEntityUUID());
 
             if (entity != null) {
-                return entity;
+                if (!(entity instanceof PixelmonEntity)) {
+                    return entity;
+                }
+
+                PixelmonEntity pixelmon = (PixelmonEntity) entity;
+
+                if (pixelmon.getOwner() != null || pixelmon.getOwnerUUID() != null) {
+                    return null;
+                }
+
+                return pixelmon;
             }
         }
 
