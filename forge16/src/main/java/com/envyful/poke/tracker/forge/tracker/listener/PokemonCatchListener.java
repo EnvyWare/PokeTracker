@@ -26,7 +26,7 @@ public class PokemonCatchListener {
     }
 
     @SubscribeEvent
-    public void onPixelmonSpawn(CaptureEvent.SuccessfulCapture event) {
+    public void onPokemonCapture(CaptureEvent.SuccessfulCapture event) {
         PixelmonEntity entity = event.getPokemon();
 
         UtilConcurrency.runAsync(() -> {
@@ -35,7 +35,7 @@ public class PokemonCatchListener {
     }
 
     @SubscribeEvent
-    public void onPixelmonSpawn(BattleEndEvent event) {
+    public void onBattleEnd(BattleEndEvent event) {
         Pair<ServerPlayerEntity, List<PixelmonEntity>> pair = this.wasWildDefeated(event);
 
         if (pair == null) {

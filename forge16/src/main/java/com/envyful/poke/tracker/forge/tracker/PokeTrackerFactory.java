@@ -56,10 +56,6 @@ public class PokeTrackerFactory {
     public static void catchPokemon(PixelmonEntity pixelmon, ServerPlayerEntity catcher) {
         for (List<EntityData> value : TRACKED_ENTITIES.values()) {
             for (EntityData entityData : value) {
-                if (entityData.isCaught()) {
-                    continue;
-                }
-
                 if (entityData.getEntityUUID() == pixelmon.getUUID()) {
                     entityData.setCaught(true);
                     entityData.setCatcher(catcher);
