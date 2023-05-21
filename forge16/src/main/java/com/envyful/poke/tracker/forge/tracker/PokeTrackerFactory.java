@@ -45,7 +45,13 @@ public class PokeTrackerFactory {
 
             List<EntityData> entities = TRACKED_ENTITIES.computeIfAbsent(entry.getValue().getName().toLowerCase(), ___ -> Lists.newArrayList());
 
-            entities.add(0, EntityData.of(pixelmon));
+
+            EntityData e = EntityData.of(pixelmon);
+
+            // Check if an Entity with the same UUID is already being tracked using lambda
+            if (!entities.stream().anyMatch(entityData -> entityData.getEntityUUID().equals(e.getEntityUUID()))) {
+                entities.add(0, EntityData.of(pixelmon));
+            }
 
             if (entities.size() > entry.getValue().getMaxStored()) {
                 entities.remove(entities.size() - 1);
@@ -56,7 +62,7 @@ public class PokeTrackerFactory {
     public static void catchPokemon(PixelmonEntity pixelmon, ServerPlayerEntity catcher) {
         for (List<EntityData> value : TRACKED_ENTITIES.values()) {
             for (EntityData entityData : value) {
-                if (entityData.getEntityUUID() == pixelmon.getUUID()) {
+                if (entityData.getEntityUUID().equals(pixelmon.getUUID())) {
                     entityData.setCaught(true);
                     entityData.setCatcher(catcher);
                 }
@@ -71,7 +77,7 @@ public class PokeTrackerFactory {
                     continue;
                 }
 
-                if (entityData.getEntityUUID() == pixelmon.getUUID()) {
+                if (entityData.getEntityUUID().equals(pixelmon.getUUID())) {
                     entityData.setCatcher(catcher);
                 }
             }
