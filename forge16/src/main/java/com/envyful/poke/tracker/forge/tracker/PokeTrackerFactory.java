@@ -37,6 +37,35 @@ public class PokeTrackerFactory {
         return TRACKED_ENTITIES.getOrDefault(name.toLowerCase(), Collections.emptyList());
     }
 
+    public static void fixTrackerDuplicates() {
+        for (Map.Entry<String, PokeTrackerConfig.TrackerSection> entry : PokeTrackerForge.getInstance().getConfig().getTrackers().entrySet()) {
+            List<EntityData> entities = TRACKED_ENTITIES.getOrDefault(entry.getValue().getName().toLowerCase(), Collections.emptyList());
+
+//            if (entities.isEmpty()) {
+//                continue;
+//            }
+
+            List<EntityData> newEntities = Lists.newArrayList();
+
+            for (EntityData entity : entities) {
+                if (newEntities.stream().anyMatch(entityData -> entityData.getEntityUUID().equals(entity.getEntityUUID()))) {
+                    continue;
+                }
+
+                newEntities.add(entity);
+            }
+
+            // If not max size reached, populate with default entities
+            if (newEntities.size() < entry.getValue().getMaxStored()) {
+                for (int i = newEntities.size(); i < entry.getValue().getMaxStored(); i++) {
+                    newEntities.add(EntityData.getDefaultEntityData());
+                }
+            }
+
+            TRACKED_ENTITIES.put(entry.getValue().getName().toLowerCase(), newEntities);
+        }
+    }
+
     public static void addTrackedEntities(PixelmonEntity pixelmon) {
         for (Map.Entry<String, PokeTrackerConfig.TrackerSection> entry : PokeTrackerForge.getInstance().getConfig().getTrackers().entrySet()) {
             if (!entry.getValue().getSpec().matches(pixelmon)) {
@@ -45,10 +74,8 @@ public class PokeTrackerFactory {
 
             List<EntityData> entities = TRACKED_ENTITIES.computeIfAbsent(entry.getValue().getName().toLowerCase(), ___ -> Lists.newArrayList());
 
-
             EntityData e = EntityData.of(pixelmon);
 
-            // Check if an Entity with the same UUID is already being tracked using lambda
             if (!entities.stream().anyMatch(entityData -> entityData.getEntityUUID().equals(e.getEntityUUID()))) {
                 entities.add(0, EntityData.of(pixelmon));
             }
@@ -56,6 +83,8 @@ public class PokeTrackerFactory {
             if (entities.size() > entry.getValue().getMaxStored()) {
                 entities.remove(entities.size() - 1);
             }
+
+            fixTrackerDuplicates();
         }
     }
 

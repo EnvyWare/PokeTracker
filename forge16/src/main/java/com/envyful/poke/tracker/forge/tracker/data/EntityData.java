@@ -43,6 +43,10 @@ public class EntityData {
         this.catcher = catcher;
     }
 
+    public static EntityData getDefaultEntityData() {
+        return new EntityData("NINGUNO", "pixelmon:missingno", UUID.randomUUID(), System.currentTimeMillis(), false, null);
+    }
+
     public String getPokemonName() {
         return this.pokemonName;
     }

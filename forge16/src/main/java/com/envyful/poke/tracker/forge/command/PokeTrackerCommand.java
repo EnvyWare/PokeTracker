@@ -21,9 +21,10 @@ import net.minecraft.entity.player.ServerPlayerEntity;
                 "last"
         }
 )
-@SubCommands(
+@SubCommands({
+        FixTrackerCommand.class,
         ReloadCommand.class
-)
+})
 public class PokeTrackerCommand {
 
     @CommandProcessor
