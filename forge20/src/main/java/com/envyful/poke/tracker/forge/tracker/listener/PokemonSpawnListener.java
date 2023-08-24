@@ -5,7 +5,7 @@ import com.envyful.poke.tracker.forge.tracker.PokeTrackerFactory;
 import com.pixelmonmod.pixelmon.Pixelmon;
 import com.pixelmonmod.pixelmon.api.events.spawning.SpawnEvent;
 import com.pixelmonmod.pixelmon.entities.pixelmon.PixelmonEntity;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class PokemonSpawnListener {
