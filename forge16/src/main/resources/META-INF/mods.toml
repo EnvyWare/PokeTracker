@@ -6,7 +6,7 @@ showAsResourcePack=false
 
 [[mods]]
   modId="poketracker"
-  version="1.1.1"
+  version="1.1.2"
   displayName="PokeTracker"
   displayURL="https://discord.gg/7vqgtrjDGw"
   credits="Envyful"
