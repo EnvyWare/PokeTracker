@@ -110,7 +110,7 @@ public class PokeTrackerConfig extends AbstractYamlConfig {
 
         public PokemonSpecification getSpec() {
             if (this.trackerSpec == null) {
-                this.trackerSpec = PokemonSpecificationProxy.create(this.spec);
+                this.trackerSpec = PokemonSpecificationProxy.create(this.spec).get();
             }
 
             return this.trackerSpec;
@@ -121,7 +121,7 @@ public class PokeTrackerConfig extends AbstractYamlConfig {
                 List<PokemonSpecification> specs = Lists.newArrayList();
 
                 for (String s : this.blacklist) {
-                    specs.add(PokemonSpecificationProxy.create(s));
+                    specs.add(PokemonSpecificationProxy.create(s).get());
                 }
 
                 this.blacklistSpec = specs;

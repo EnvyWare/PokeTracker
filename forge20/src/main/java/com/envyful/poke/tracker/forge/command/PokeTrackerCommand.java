@@ -9,9 +9,8 @@ import com.envyful.poke.tracker.forge.gui.PokeTrackerUI;
 import net.minecraft.server.level.ServerPlayer;
 
 @Command(
-        value = "poketracker",
-        description = "Opens the tracker UI",
-        aliases = {
+        value = {
+                "poketracker",
                 "lastlegend",
                 "ll",
                 "lastultrabeast",

@@ -1,9 +1,9 @@
 package com.envyful.poke.tracker.forge.gui;
 
-import com.envyful.api.gui.Transformer;
+import com.envyful.api.text.parse.SimplePlaceholder;
 import com.envyful.poke.tracker.forge.tracker.data.EntityData;
 
-public class SpriteTransformer implements Transformer {
+public class SpriteTransformer implements SimplePlaceholder {
 
     private final String path;
 
@@ -20,7 +20,7 @@ public class SpriteTransformer implements Transformer {
     }
 
     @Override
-    public String transformName(String name) {
+    public String replace(String name) {
         return name.replace("%sprite%", this.path);
     }
 }

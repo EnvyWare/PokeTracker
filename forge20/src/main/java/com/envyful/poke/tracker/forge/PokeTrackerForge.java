@@ -2,6 +2,7 @@ package com.envyful.poke.tracker.forge;
 
 import com.envyful.api.config.yaml.YamlConfigFactory;
 import com.envyful.api.forge.command.ForgeCommandFactory;
+import com.envyful.api.forge.command.parser.ForgeAnnotationCommandParser;
 import com.envyful.api.forge.gui.factory.ForgeGuiFactory;
 import com.envyful.api.forge.player.ForgePlayerManager;
 import com.envyful.api.gui.factory.GuiFactory;
@@ -29,8 +30,8 @@ public class PokeTrackerForge {
 
     private static PokeTrackerForge instance;
 
-    private ForgeCommandFactory commandFactory = new ForgeCommandFactory();
     private ForgePlayerManager playerManager = new ForgePlayerManager();
+    private ForgeCommandFactory commandFactory = new ForgeCommandFactory(ForgeAnnotationCommandParser::new, playerManager);
 
     private PokeTrackerConfig config;
     private PokeTrackerLocale locale;
@@ -65,7 +66,7 @@ public class PokeTrackerForge {
         new PokemonSpawnListener();
         new PokemonCatchListener();
 
-        this.commandFactory.registerCommand(event.getDispatcher(), new PokeTrackerCommand());
+        this.commandFactory.registerCommand(event.getDispatcher(), this.commandFactory.parseCommand(new PokeTrackerCommand()));
     }
 
     @SubscribeEvent
